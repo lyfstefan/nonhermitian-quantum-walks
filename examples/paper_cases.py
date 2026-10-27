@@ -60,7 +60,7 @@ def draw_cases(cases, destination, font_path=None):
             )
         left.set(
             title=rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$",
-            xlabel=r"Site $n$",
+            xlabel=r"$n$",
             ylabel=r"$P$",
         )
         left.set_xticks([-10, 0, 10])
@@ -78,7 +78,7 @@ def draw_cases(cases, destination, font_path=None):
             vmin=0,
             vmax=1,
         )
-        right.set(title="Evolution", xlabel=r"Site $n$", ylabel=r"Step $T$")
+        right.set(title="", xlabel=r"$n$", ylabel=r"$T$")
         right.set_xticks([-20, 0, 20])
         panel_colorbar(fig, right, im, r"$P$")
     if overview:
