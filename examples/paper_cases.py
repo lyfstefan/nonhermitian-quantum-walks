@@ -8,7 +8,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from qwalk import Walk
-from qwalk.publication_style import apply_style, width, save, C, DASH
+from qwalk.publication_style import apply_style, width, save, C, DASH, panel_colorbar
 from validation.run import match
 from validation.paper_anchors import TABLES
 
@@ -44,7 +44,11 @@ def draw_cases(cases, destination, font_path=None):
                 linestyle=DASH[index],
                 label=f"Mode {index+1}" if overview else rf"$|\lambda|={value:.4f}$",
             )
-        left.set(title=rf"{model}, $\gamma={gamma}$", xlabel=r"Site $n$", ylabel=r"$P$")
+        left.set(
+            title=rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$",
+            xlabel=r"Site $n$",
+            ylabel=r"$P$",
+        )
         left.set_xticks([-10, 0, 10])
         if not overview:
             left.legend(frameon=False, handlelength=1.4, labelspacing=0.15)
@@ -60,6 +64,7 @@ def draw_cases(cases, destination, font_path=None):
         )
         right.set(title="Evolution", xlabel=r"Site $n$", ylabel=r"Step $T$")
         right.set_xticks([-20, 0, 20])
+        panel_colorbar(fig, right, im, r"$P$")
     if overview:
         handles, labels = eigen_axes[0].get_legend_handles_labels()
         fig.legend(
@@ -71,7 +76,6 @@ def draw_cases(cases, destination, font_path=None):
             handlelength=1.4,
             columnspacing=1.0,
         )
-    fig.colorbar(im, ax=evolution_axes, label="Normalized probability", shrink=0.8)
     save(fig, destination)
     plt.close(fig)
 
