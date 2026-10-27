@@ -1,0 +1,2 @@
+# Generated Matplotlib SVG coordinate paths contain trailing spaces.
+*.svg -whitespace

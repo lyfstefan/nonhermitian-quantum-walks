@@ -1,7 +1,8 @@
 {
-  "examples/paper_cases.py": "faeadd753a7412a4ae80ef01a0584c93265d7a7b41de9c2dfd767a15ee82ec6d",
   "qwalk/__init__.py": "b142cb864de1b264c67b96f53953cc22ac31be45fda534265ae4acf22d7b4ae8",
   "qwalk/model.py": "309130f5f7afc47896be1244dd52db33e339b8af2b8b0ad331ab0c50dde59f2a",
+  "qwalk/publication_style.py": "9f97896fa25b023e56e699b769a0cc630ce66febace6a9ba753ef6d88ff6b35a",
+  "examples/paper_cases.py": "a8987424021158826064564d4ea7d850bfb5f29c0ab77cbe9acbee7051294ec2",
   "tests/test_operators.py": "ee6c8515f1945f756ff88dd1c6e39ec360a62158ddec8375f80e6fbb9c39d8c2",
   "validation/__init__.py": "52a2ac4a753b7cfb838887528a075234bc11df49f6813471b08544185b2c6771",
   "validation/paper_anchors.py": "fb697f4ff51167ff83317acde63608166ddf7d16db1746263d6240965a0c4dac",

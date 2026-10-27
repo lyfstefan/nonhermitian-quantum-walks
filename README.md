@@ -107,3 +107,12 @@ Use `CITATION.cff` or `citation.bib` to cite the associated paper.
 ## Generated example
 
 ![Numerical eigenstates and normalized time evolution](docs/localization.png)
+
+## Figure exports
+
+Figures now follow [publication template v0](docs/figure_style.md), with
+LM Roman 10 text, Computer Modern mathematics, 10/9 pt typography and a
+17.8 cm printed width. PDF, 300 dpi PNG, SVG and typography records accompany
+the figures. The saved numerical data are unchanged.
+
+[Unbroken regime](docs/localization_unbroken.pdf) · [Partially broken](docs/localization_partially_broken.pdf) · [Completely broken](docs/localization_completely_broken.pdf)

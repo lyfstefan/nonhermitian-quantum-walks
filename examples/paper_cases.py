@@ -1,42 +1,116 @@
-"""Numerical counterparts of Figs. 2-4, using finite periodic rings."""
+"""Publication-template figures from calculated finite-ring quantum walks."""
+
 import argparse
 from pathlib import Path
 import numpy as np
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from qwalk import Walk
+from qwalk.publication_style import apply_style, width, save, C, DASH
 from validation.run import match
 from validation.paper_anchors import TABLES
 
 
-def main():
-    parser=argparse.ArgumentParser()
-    parser.add_argument("--output",type=Path,default=Path("examples/output"))
-    args=parser.parse_args()
-    args.output.mkdir(parents=True,exist_ok=True)
-    fig,axes=plt.subplots(3,4,figsize=(14,10),constrained_layout=True)
-    for table,(model,gamma,anchors) in TABLES.items():
-        row={"I":0,"II":0,"III":1,"IV":1,"V":2,"VI":2}[table]
-        col=0 if model=="U1" else 2
-        w=Walk(model,gamma,80)
-        values,profiles,_=match(w,np.asarray(anchors))
-        use=abs(w.sites)<=12
-        for value,profile in zip(values,profiles.T):
-            axes[row,col].plot(w.sites[use],profile[use],".-",label=f"|lambda|={abs(value):.4f}")
-        axes[row,col].set(title=f"{model}, gamma={gamma}: eigenstates",xlabel="site n",ylabel="probability")
-        axes[row,col].legend(fontsize=7)
-        large=Walk(model,gamma,650)
-        p=large.evolve()
-        select=abs(large.sites)<=30
-        im=axes[row,col+1].imshow(p[:,select],origin="lower",aspect="auto",extent=[-30.5,30.5,-.5,300.5],cmap="magma",vmin=0,vmax=1)
-        axes[row,col+1].set(title=f"{model}, gamma={gamma}: evolution",xlabel="site n",ylabel="full step T")
-        np.savez_compressed(args.output/f"{model}_gamma_{gamma}.npz",sites=large.sites,probability=p,moduli=abs(values),eigen_sites=w.sites,eigen_profiles=profiles)
-    fig.colorbar(im,ax=axes[:,[1,3]],label="normalized probability",shrink=.7)
-    fig.suptitle("PRA 102, 022218: 2026 numerical reimplementation (not original figure data)")
-    fig.savefig(args.output/"localization.png",dpi=160)
+def draw_cases(cases, destination, font_path=None):
+    """Render saved arrays without changing probability normalization or limits."""
+    apply_style(font_path=font_path)
+    height = 4.9 if len(cases) == 2 else 13.2
+    fig, axes = plt.subplots(
+        len(cases),
+        2,
+        figsize=(width(2), height),
+        constrained_layout=True,
+        squeeze=False,
+    )
+    for row, (model, gamma, data) in enumerate(cases):
+        sites, profiles = data["eigen_sites"], data["eigen_profiles"]
+        use = abs(sites) <= 12
+        for index, (value, profile) in enumerate(zip(data["moduli"], profiles.T)):
+            axes[row, 0].plot(
+                sites[use],
+                profile[use],
+                marker=".",
+                markersize=2.5,
+                color=[C["blue"], C["red"], C["green"], C["purple"]][index],
+                linestyle=DASH[index],
+                label=rf"$|\lambda|={value:.4f}$",
+            )
+        axes[row, 0].set(
+            title=rf"({chr(97+2*row)}) {model}, $\gamma={gamma}$: eigenstates",
+            xlabel=r"Site $n$",
+            ylabel="Probability",
+        )
+        axes[row, 0].legend(frameon=False, handlelength=1.4, labelspacing=0.15)
+        use = abs(data["sites"]) <= 30
+        im = axes[row, 1].imshow(
+            data["probability"][:, use],
+            origin="lower",
+            aspect="auto",
+            extent=[-30.5, 30.5, -0.5, 300.5],
+            cmap="magma",
+            vmin=0,
+            vmax=1,
+        )
+        axes[row, 1].set(
+            title=rf"({chr(98+2*row)}) {model}, $\gamma={gamma}$: evolution",
+            xlabel=r"Site $n$",
+            ylabel=r"Full step $T$",
+        )
+    fig.colorbar(im, ax=axes[:, 1], label="Normalized probability", shrink=0.8)
+    save(fig, destination)
+    fig.savefig(Path(destination).parent / (Path(destination).name + ".svg"))
     plt.close(fig)
-    print(args.output/"localization.png")
 
 
-if __name__=="__main__": main()
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=Path("examples/output"))
+    parser.add_argument(
+        "--reuse-data",
+        action="store_true",
+        help="render existing NPZ arrays without recalculation",
+    )
+    parser.add_argument(
+        "--font-path", type=Path, help="optional Roman font file to pin at export"
+    )
+    parser.add_argument(
+        "--data-dir", type=Path, help="optional directory of cached NPZ arrays"
+    )
+    args = parser.parse_args()
+    args.output.mkdir(parents=True, exist_ok=True)
+    data_dir = args.data_dir or args.output
+    data_dir.mkdir(parents=True, exist_ok=True)
+    cases = []
+    for model, gamma, anchors in TABLES.values():
+        path = data_dir / f"{model}_gamma_{gamma}.npz"
+        if not args.reuse_data:
+            w = Walk(model, gamma, 80)
+            values, profiles, _ = match(w, np.asarray(anchors))
+            large = Walk(model, gamma, 650)
+            np.savez_compressed(
+                path,
+                sites=large.sites,
+                probability=large.evolve(),
+                moduli=abs(values),
+                eigen_sites=w.sites,
+                eigen_profiles=profiles,
+            )
+        with np.load(path) as stored:
+            data = {name: stored[name].copy() for name in stored.files}
+        cases.append((model, gamma, data))
+    draw_cases(cases, args.output / "localization", font_path=args.font_path)
+    for index, regime in enumerate(
+        ["unbroken", "partially_broken", "completely_broken"]
+    ):
+        draw_cases(
+            cases[2 * index : 2 * index + 2],
+            args.output / f"localization_{regime}",
+            font_path=args.font_path,
+        )
+    print(args.output / "localization.png")
+
+
+if __name__ == "__main__":
+    main()
