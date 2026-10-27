@@ -39,6 +39,8 @@ The TeX preamble is `\usepackage{amsmath}\usepackage{textcomp}`.
 Operator names use math subscripts (`$U_1$`, `$U_2$`), dimensionless ratios
 use math mode (`$V/t$`), and phase letters use mathematical italics.
 
-Quantum-walk legends use the author-requested 8 pt text. Detailed-case
-eigenvalue legends sit outside the profile frames and show two decimal places.
-The saved eigenvalues and arrays retain their full numerical precision.
+Quantum-walk overview legends use 8 pt text. Detailed-case eigenvalue keys
+use 7 pt text in two columns inside the top of each profile frame. The common
+modulus is supplied once as the legend title; values show two decimal places.
+Only the displayed y-axis headroom is increased to avoid covering the peaks;
+profile values, eigenvalues, and their saved precision are unchanged.

@@ -42,7 +42,7 @@ def draw_cases(cases, destination, font_path=None):
                 markersize=2.5,
                 color=[C["blue"], C["red"], C["green"], C["purple"]][index],
                 linestyle=DASH[index],
-                label=f"Mode {index+1}" if overview else rf"$|\lambda|={value:.2f}$",
+                label=f"Mode {index+1}" if overview else rf"${value:.2f}$",
             )
         left.set(
             title=rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$",
@@ -51,13 +51,23 @@ def draw_cases(cases, destination, font_path=None):
         )
         left.set_xticks([-10, 0, 10])
         if not overview:
+            # A compact two-column key occupies reserved space inside the frame.
+            # Its title supplies the common quantity without repeating it four times.
+            peak = float(np.max(profiles[use]))
+            left.set_ylim(-0.03 * peak, 1.7 * peak)
             left.legend(
-                loc="upper left",
-                bbox_to_anchor=(1.03, 1.0),
+                loc="upper center",
+                bbox_to_anchor=(0.5, 0.99),
+                ncol=2,
+                title=r"$|\lambda|$",
                 borderaxespad=0,
                 frameon=False,
-                handlelength=1.4,
-                labelspacing=0.15,
+                handlelength=0.85,
+                handletextpad=0.3,
+                labelspacing=0.08,
+                columnspacing=0.65,
+                borderpad=0.15,
+                markerscale=0.75,
             )
         use = abs(data["sites"]) <= 30
         im = right.imshow(
@@ -83,24 +93,7 @@ def draw_cases(cases, destination, font_path=None):
             handlelength=1.4,
             columnspacing=1.0,
         )
-    if not overview:
-        # Reserve physical room between the frames for the external legend.
-        # Frame side and typography retain the author's reference proportions.
-        fig.set_layout_engine(None)
-        page_width, page_height = 10.8, 0.45 + 3.75 * len(cases)
-        fig.set_size_inches(page_width / 2.54, page_height / 2.54, forward=False)
-        for row in range(len(cases)):
-            bottom = 0.95 + 3.75 * (len(cases) - row - 1)
-            for col, left_cm in enumerate([0.95, 7.2]):
-                axes[row, col].set_position(
-                    [
-                        left_cm / page_width,
-                        bottom / page_height,
-                        2.5 / page_width,
-                        2.5 / page_height,
-                    ]
-                )
-    save(fig, destination, legend_fontsize=8)
+    save(fig, destination, legend_fontsize=8 if overview else 7)
     plt.close(fig)
 
 

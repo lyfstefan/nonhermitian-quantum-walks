@@ -118,6 +118,7 @@ SVG and typography records accompany every figure. Plotting now requires
 a LaTeX installation; model evaluation and optimization remain independent
 of the plotting toolchain.
 
-The quantum-walk legends use 8 pt text; detailed eigenvalue moduli are
-shown to two decimal places in the space beside each profile frame.
-Full-precision values remain available in the saved numerical arrays.
+Detailed eigenvalue keys use 7 pt text in two columns inside the profile
+frames, with two decimal places and a common modulus title. Additional
+vertical headroom keeps them clear of the curves. The overview key stays
+8 pt. Saved eigenvalues and profile arrays retain their full precision.
