@@ -117,3 +117,7 @@ and independent short, bottom-aligned colorbars labeled above. PDF, 300 dpi PNG,
 SVG and typography records accompany every figure. Plotting now requires
 a LaTeX installation; model evaluation and optimization remain independent
 of the plotting toolchain.
+
+The quantum-walk legends use 8 pt text; detailed eigenvalue moduli are
+shown to two decimal places in the space beside each profile frame.
+Full-precision values remain available in the saved numerical arrays.

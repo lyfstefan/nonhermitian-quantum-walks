@@ -38,3 +38,7 @@ not override TeX's Computer Modern selection.
 The TeX preamble is `\usepackage{amsmath}\usepackage{textcomp}`.
 Operator names use math subscripts (`$U_1$`, `$U_2$`), dimensionless ratios
 use math mode (`$V/t$`), and phase letters use mathematical italics.
+
+Quantum-walk legends use the author-requested 8 pt text. Detailed-case
+eigenvalue legends sit outside the profile frames and show two decimal places.
+The saved eigenvalues and arrays retain their full numerical precision.

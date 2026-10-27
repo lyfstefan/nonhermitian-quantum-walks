@@ -42,7 +42,7 @@ def draw_cases(cases, destination, font_path=None):
                 markersize=2.5,
                 color=[C["blue"], C["red"], C["green"], C["purple"]][index],
                 linestyle=DASH[index],
-                label=f"Mode {index+1}" if overview else rf"$|\lambda|={value:.4f}$",
+                label=f"Mode {index+1}" if overview else rf"$|\lambda|={value:.2f}$",
             )
         left.set(
             title=rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$",
@@ -51,7 +51,14 @@ def draw_cases(cases, destination, font_path=None):
         )
         left.set_xticks([-10, 0, 10])
         if not overview:
-            left.legend(frameon=False, handlelength=1.4, labelspacing=0.15)
+            left.legend(
+                loc="upper left",
+                bbox_to_anchor=(1.03, 1.0),
+                borderaxespad=0,
+                frameon=False,
+                handlelength=1.4,
+                labelspacing=0.15,
+            )
         use = abs(data["sites"]) <= 30
         im = right.imshow(
             data["probability"][:, use],
@@ -76,7 +83,24 @@ def draw_cases(cases, destination, font_path=None):
             handlelength=1.4,
             columnspacing=1.0,
         )
-    save(fig, destination)
+    if not overview:
+        # Reserve physical room between the frames for the external legend.
+        # Frame side and typography retain the author's reference proportions.
+        fig.set_layout_engine(None)
+        page_width, page_height = 10.8, 0.45 + 3.75 * len(cases)
+        fig.set_size_inches(page_width / 2.54, page_height / 2.54, forward=False)
+        for row in range(len(cases)):
+            bottom = 0.95 + 3.75 * (len(cases) - row - 1)
+            for col, left_cm in enumerate([0.95, 7.2]):
+                axes[row, col].set_position(
+                    [
+                        left_cm / page_width,
+                        bottom / page_height,
+                        2.5 / page_width,
+                        2.5 / page_height,
+                    ]
+                )
+    save(fig, destination, legend_fontsize=8)
     plt.close(fig)
 
 
