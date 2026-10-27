@@ -21,7 +21,7 @@ $$
 
 Here $R_1(\theta)=\exp(i\theta\sigma_x)$,
 $R_2(\theta)=\exp(-i\theta\sigma_y)$,
-$G_1=\operatorname{diag}(e^{-\gamma},e^\gamma)$, and
+$G_1=\mathrm{diag}(e^{-\gamma},e^\gamma)$, and
 $G_2=\gamma|+\rangle\langle+|+\gamma^{-1}|-\rangle\langle-|$.
 The unitary limits are $\gamma=0$ for $U_1$ and $\gamma=1$ for $U_2$.
 
