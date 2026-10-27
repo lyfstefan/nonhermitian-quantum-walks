@@ -27,7 +27,7 @@ The example saves `examples/output/localization.png` and six NPZ files with
 site coordinates, time probabilities, and localized right-eigenstate profiles.
 The JSON validation report is versioned in `validation/report.json` and can be
 regenerated. NumPy, SciPy and Matplotlib are the only external dependencies.
-No TeX installation or original research files are needed.
+No original research files are needed; figure export requires LaTeX.
 
 ## Operator conventions
 
@@ -110,9 +110,10 @@ Use `CITATION.cff` or `citation.bib` to cite the associated paper.
 
 ## Figure exports
 
-Figures now follow [publication template v0](docs/figure_style.md), with
-LM Roman 10 text, Computer Modern mathematics, 10/9 pt typography and a
-17.8 cm printed width. PDF, 300 dpi PNG, SVG and typography records accompany
-the figures. The saved numerical data are unchanged.
-
-[Unbroken regime](docs/localization_unbroken.pdf) · [Partially broken](docs/localization_partially_broken.pdf) · [Completely broken](docs/localization_completely_broken.pdf)
+Figures follow [publication style v1](docs/figure_style.md): real LaTeX text
+and mathematics, Computer Modern fonts, 10/9 pt typography, and compact figures
+(7.6 cm single-panel / 15.2 cm multipanel width), with square data axes
+frames and canvas height chosen for the panel arrangement. PDF, 300 dpi PNG,
+SVG and typography records accompany every figure. Plotting now requires
+a LaTeX installation; model evaluation and optimization remain independent
+of the plotting toolchain.

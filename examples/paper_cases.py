@@ -16,35 +16,40 @@ from validation.paper_anchors import TABLES
 def draw_cases(cases, destination, font_path=None):
     """Render saved arrays without changing probability normalization or limits."""
     apply_style(font_path=font_path)
-    height = 4.9 if len(cases) == 2 else 13.2
+    overview = len(cases) > 2
+    shape = (3, 4) if overview else (len(cases), 2)
     fig, axes = plt.subplots(
-        len(cases),
-        2,
-        figsize=(width(2), height),
+        *shape,
+        figsize=(width(2), width(2) * (0.87 if overview else 1.06)),
         constrained_layout=True,
         squeeze=False,
     )
-    for row, (model, gamma, data) in enumerate(cases):
+    eigen_axes = []
+    evolution_axes = []
+    for case_index, (model, gamma, data) in enumerate(cases):
+        row = case_index // 2 if overview else case_index
+        col = (case_index % 2) * 2 if overview else 0
+        left, right = axes[row, col], axes[row, col + 1]
+        eigen_axes.append(left)
+        evolution_axes.append(right)
         sites, profiles = data["eigen_sites"], data["eigen_profiles"]
         use = abs(sites) <= 12
         for index, (value, profile) in enumerate(zip(data["moduli"], profiles.T)):
-            axes[row, 0].plot(
+            left.plot(
                 sites[use],
                 profile[use],
                 marker=".",
                 markersize=2.5,
                 color=[C["blue"], C["red"], C["green"], C["purple"]][index],
                 linestyle=DASH[index],
-                label=rf"$|\lambda|={value:.4f}$",
+                label=f"Mode {index+1}" if overview else rf"$|\lambda|={value:.4f}$",
             )
-        axes[row, 0].set(
-            title=rf"({chr(97+2*row)}) {model}, $\gamma={gamma}$: eigenstates",
-            xlabel=r"Site $n$",
-            ylabel="Probability",
-        )
-        axes[row, 0].legend(frameon=False, handlelength=1.4, labelspacing=0.15)
+        left.set(title=rf"{model}, $\gamma={gamma}$", xlabel=r"Site $n$", ylabel=r"$P$")
+        left.set_xticks([-10, 0, 10])
+        if not overview:
+            left.legend(frameon=False, handlelength=1.4, labelspacing=0.15)
         use = abs(data["sites"]) <= 30
-        im = axes[row, 1].imshow(
+        im = right.imshow(
             data["probability"][:, use],
             origin="lower",
             aspect="auto",
@@ -53,14 +58,21 @@ def draw_cases(cases, destination, font_path=None):
             vmin=0,
             vmax=1,
         )
-        axes[row, 1].set(
-            title=rf"({chr(98+2*row)}) {model}, $\gamma={gamma}$: evolution",
-            xlabel=r"Site $n$",
-            ylabel=r"Full step $T$",
+        right.set(title="Evolution", xlabel=r"Site $n$", ylabel=r"Step $T$")
+        right.set_xticks([-20, 0, 20])
+    if overview:
+        handles, labels = eigen_axes[0].get_legend_handles_labels()
+        fig.legend(
+            handles,
+            labels,
+            loc="outside upper center",
+            ncol=4,
+            frameon=False,
+            handlelength=1.4,
+            columnspacing=1.0,
         )
-    fig.colorbar(im, ax=axes[:, 1], label="Normalized probability", shrink=0.8)
+    fig.colorbar(im, ax=evolution_axes, label="Normalized probability", shrink=0.8)
     save(fig, destination)
-    fig.savefig(Path(destination).parent / (Path(destination).name + ".svg"))
     plt.close(fig)
 
 
@@ -73,7 +85,7 @@ def main():
         help="render existing NPZ arrays without recalculation",
     )
     parser.add_argument(
-        "--font-path", type=Path, help="optional Roman font file to pin at export"
+        "--font-path", type=Path, help="legacy option; LaTeX selects Computer Modern"
     )
     parser.add_argument(
         "--data-dir", type=Path, help="optional directory of cached NPZ arrays"
