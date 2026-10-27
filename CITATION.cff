@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Please cite the associated research paper when using these models."
+title: "nonhermitian-quantum-walks - accompanying scientific code"
+authors:
+  - family-names: "Liu"
+    given-names: "Yifan"
+repository-code: "https://github.com/lyfstefan/nonhermitian-quantum-walks"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Zhang"
+      given-names: "Rui"
+    - family-names: "Liu"
+      given-names: "Yifan"
+    - family-names: "Chen"
+      given-names: "Tian"
+  title: "Non-Hermiticity-induced quantum control of localization in quantum walks"
+  journal: "Physical Review A"
+  volume: "102"
+  start: "022218"
+  doi: "10.1103/PhysRevA.102.022218"
+  year: 2020
