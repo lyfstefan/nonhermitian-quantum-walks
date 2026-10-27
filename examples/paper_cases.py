@@ -44,6 +44,10 @@ def draw_cases(cases, destination, font_path=None):
         evolution_axes.append(right)
         sites, profiles = data["eigen_sites"], data["eigen_profiles"]
         use = abs(sites) <= 12
+        labels = [legend_value(value) for value in data["moduli"]]
+        if model == "U2" and np.isclose(gamma, 0.1):
+            # Only this panel needs to distinguish its nearby small moduli.
+            labels[2:] = [f"{value:.4f}" for value in data["moduli"][2:]]
         for index, (value, profile) in enumerate(zip(data["moduli"], profiles.T)):
             left.plot(
                 sites[use],
@@ -52,7 +56,7 @@ def draw_cases(cases, destination, font_path=None):
                 markersize=2.5,
                 color=[C["blue"], C["red"], C["green"], C["purple"]][index],
                 linestyle=DASH[index],
-                label=f"Mode {index+1}" if overview else rf"${legend_value(value)}$",
+                label=f"Mode {index+1}" if overview else rf"${labels[index]}$",
             )
         left.set(
             title=rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$",
