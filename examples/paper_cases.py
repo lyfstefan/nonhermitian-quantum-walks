@@ -8,7 +8,17 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from qwalk import Walk
-from qwalk.publication_style import apply_style, width, save, C, DASH, panel_colorbar
+from qwalk.publication_style import (
+    apply_style,
+    width,
+    save,
+    C,
+    DASH,
+    panel_colorbar,
+    inset_legend,
+    legend_value,
+    INSET_LEGEND_FONT,
+)
 from validation.run import match
 from validation.paper_anchors import TABLES
 
@@ -42,7 +52,7 @@ def draw_cases(cases, destination, font_path=None):
                 markersize=2.5,
                 color=[C["blue"], C["red"], C["green"], C["purple"]][index],
                 linestyle=DASH[index],
-                label=f"Mode {index+1}" if overview else rf"${value:.2f}$",
+                label=f"Mode {index+1}" if overview else rf"${legend_value(value)}$",
             )
         left.set(
             title=rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$",
@@ -51,23 +61,8 @@ def draw_cases(cases, destination, font_path=None):
         )
         left.set_xticks([-10, 0, 10])
         if not overview:
-            # A compact two-column key occupies reserved space inside the frame.
-            # Its title supplies the common quantity without repeating it four times.
-            peak = float(np.max(profiles[use]))
-            left.set_ylim(-0.03 * peak, 1.7 * peak)
-            left.legend(
-                loc="upper center",
-                bbox_to_anchor=(0.5, 0.99),
-                ncol=2,
-                title=r"$|\lambda|$",
-                borderaxespad=0,
-                frameon=False,
-                handlelength=0.85,
-                handletextpad=0.3,
-                labelspacing=0.08,
-                columnspacing=0.65,
-                borderpad=0.15,
-                markerscale=0.75,
+            inset_legend(
+                left, title=r"$|\lambda|$", data_top=float(np.max(profiles[use]))
             )
         use = abs(data["sites"]) <= 30
         im = right.imshow(
@@ -93,7 +88,7 @@ def draw_cases(cases, destination, font_path=None):
             handlelength=1.4,
             columnspacing=1.0,
         )
-    save(fig, destination, legend_fontsize=8 if overview else 7)
+    save(fig, destination, legend_fontsize=8 if overview else INSET_LEGEND_FONT)
     plt.close(fig)
 
 
