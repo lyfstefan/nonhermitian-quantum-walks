@@ -26,7 +26,8 @@
         3,
         4
       ],
-      "profile_viewport_side_cm": 3.6
+      "profile_viewport_side_cm": 3.6,
+      "eigenvalue_labels_in_legend_only": true
     },
     {
       "figure": "localization_partially_broken",
@@ -53,7 +54,8 @@
         3,
         4
       ],
-      "profile_viewport_side_cm": 3.6
+      "profile_viewport_side_cm": 3.6,
+      "eigenvalue_labels_in_legend_only": true
     },
     {
       "figure": "localization",
@@ -96,7 +98,8 @@
         3,
         4
       ],
-      "profile_viewport_side_cm": 3.6
+      "profile_viewport_side_cm": 3.6,
+      "eigenvalue_labels_in_legend_only": true
     },
     {
       "figure": "localization_unbroken",
@@ -123,7 +126,8 @@
         3,
         4
       ],
-      "profile_viewport_side_cm": 3.6
+      "profile_viewport_side_cm": 3.6,
+      "eigenvalue_labels_in_legend_only": true
     }
   ],
   "orthographic_view_degrees": [
@@ -162,5 +166,6 @@
   ],
   "eigenvalue_legend_font_pt": 7,
   "all_six_case_legends_clear_heatmap_frames": true,
-  "adjacent_row_titles_clear_site_labels": true
+  "adjacent_row_titles_clear_site_labels": true,
+  "depth_axis_ticks_visible": false
 }

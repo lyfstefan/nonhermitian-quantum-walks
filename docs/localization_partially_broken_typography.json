@@ -51,7 +51,7 @@
         1.2,
         1.8
       ],
-      "depth_tick_rotation_degrees": -45,
+      "depth_ticks_visible": false,
       "site_bar_width": 0.85,
       "layer_bar_width": 0.45,
       "probability_limits": [
@@ -71,12 +71,7 @@
         "1.47",
         "0.68"
       ],
-      "displayed_layer_labels": [
-        "$|\\lambda_{1}|$",
-        "$|\\lambda_{2}|$",
-        "$|\\lambda_{3}|$",
-        "$|\\lambda_{4}|$"
-      ],
+      "displayed_layer_labels": [],
       "displayed_value_labels": [
         "$|\\lambda_{1}|=1.41$",
         "$|\\lambda_{2}|=0.71$",
@@ -291,7 +286,7 @@
         1.2,
         1.8
       ],
-      "depth_tick_rotation_degrees": -45,
+      "depth_ticks_visible": false,
       "site_bar_width": 0.85,
       "layer_bar_width": 0.45,
       "probability_limits": [
@@ -311,12 +306,7 @@
         "1.43",
         "0.70"
       ],
-      "displayed_layer_labels": [
-        "$|\\lambda_{1}|$",
-        "$|\\lambda_{2}|$",
-        "$|\\lambda_{3}|$",
-        "$|\\lambda_{4}|$"
-      ],
+      "displayed_layer_labels": [],
       "displayed_value_labels": [
         "$|\\lambda_{1}|=1.36$",
         "$|\\lambda_{2}|=0.73$",

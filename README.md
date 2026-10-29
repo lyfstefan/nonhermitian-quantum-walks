@@ -77,9 +77,9 @@ The regime labels describe the defect-free bulk spectrum.
 
 The [overview](docs/localization.png) collects all six cases. Eigenstate
 profiles use three-dimensional layered bars with a common orthographic view,
-bar width and probability-axis range. Each layer is one eigenstate, labeled
-by $|\lambda_i|$ with $i=1,2,3,4$ from front to back. The adjacent color
-legend gives the moduli; the layer spacing is categorical. Evolution maps
+bar width and probability-axis range. Each layer is one eigenstate. The color
+legend identifies $|\lambda_i|$ with $i=1,2,3,4$ from front to back and gives
+the moduli; the categorical depth axis has no tick labels. Evolution maps
 retain their probability normalization and their common color scale. PDFs, SVGs and
 300 dpi PNGs are provided in `docs/`. The figures use the shared
 [publication style](docs/figure_style.md).

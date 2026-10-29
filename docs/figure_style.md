@@ -3,11 +3,10 @@
 Eigenstate probabilities are shown as compact three-dimensional layered bars.
 Each layer contains one right eigenstate, the horizontal coordinate is the
 physical site $n$, and the bar height is $P_n$. The depth coordinate is
-categorical: the four layers have equal display spacing and are labeled by
-the indices $|\lambda_1|$ through $|\lambda_4|$, ordered from front to
-back. The adjacent color legend gives the corresponding moduli. The indices
-identify the four plotted eigenstates; they do not rank their moduli. Depth
-spacing is not a numerical scale for $|\lambda|$.
+categorical: the four layers have equal display spacing. The color legend
+identifies the four eigenstates by $|\lambda_i|$, with $i=1,2,3,4$ ordered
+from front to back, and gives their moduli. The depth axis has no tick labels;
+its spacing is not a numerical scale for $|\lambda|$.
 
 All cases use the same orthographic projection, elevation $22^\circ$,
 azimuth $-55^\circ$, a coordinate-box aspect ratio of $1.4:1.2:1.8$,
@@ -26,7 +25,7 @@ with the frame and labeled above.
 The overview has three rows and two case pairs per row. Each detailed figure
 has two case pairs, stacked vertically. LaTeX and Computer Modern are used
 throughout: axis labels 10 pt, ordinary ticks and model headings 9 pt, and
-depth-category labels and eigenvalue legends 7 pt. Axis lines are 1 pt. The
+eigenvalue legends 7 pt. Axis lines are 1 pt. The
 two nearby small moduli
 in the $U_2$, $\gamma=0.1$ panel retain four decimal places so that they remain
 distinguishable; the other displayed values use two.

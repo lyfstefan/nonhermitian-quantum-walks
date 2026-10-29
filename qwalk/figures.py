@@ -67,11 +67,10 @@ def draw_profile(ax, model, gamma, data):
         )
     ax.set(xlim=(-12.8, 12.8), ylim=(-0.45, 3.5), zlim=(0, 1.08))
     ax.set_xticks([-10, 0, 10])
-    layer_labels = [rf"$|\lambda_{{{index+1}}}|$" for index in range(4)]
     value_labels = [
         rf"$|\lambda_{{{index+1}}}|={value}$" for index, value in enumerate(labels)
     ]
-    ax.set_yticks(range(4), labels=layer_labels)
+    ax.set_yticks([])
     ax.set_zticks([0, 0.5, 1])
     ax.set_xlabel(r"$n$", fontsize=10, labelpad=1)
     ax.set_ylabel("")
@@ -90,10 +89,6 @@ def draw_profile(ax, model, gamma, data):
         axis.line.set_linewidth(1.0)
         axis.set_tick_params(labelsize=9, pad=1)
     ax.yaxis.set_tick_params(labelsize=7)
-    for label in ax.get_yticklabels():
-        label.set_rotation(-45)
-        label.set_ha("left")
-        label.set_va("top")
     payload = {
         "kind": "layered_eigenstate_bars",
         "model": model,
@@ -101,14 +96,14 @@ def draw_profile(ax, model, gamma, data):
         "projection": "orthographic",
         "view_elevation_azimuth_degrees": list(CAMERA),
         "box_aspect": list(BOX_ASPECT),
-        "depth_tick_rotation_degrees": -45,
+        "depth_ticks_visible": False,
         "site_bar_width": SITE_BAR_WIDTH,
         "layer_bar_width": LAYER_BAR_WIDTH,
         "probability_limits": [0, 1.08],
         "depth_coordinate": "categorical state rows, equally spaced for display",
         "eigenvalue_moduli": moduli.tolist(),
         "displayed_modulus_labels": labels,
-        "displayed_layer_labels": layer_labels,
+        "displayed_layer_labels": [],
         "displayed_value_labels": value_labels,
         "layer_indices_front_to_back": [1, 2, 3, 4],
         "sites": n.tolist(),

@@ -80,6 +80,7 @@ class Figures(unittest.TestCase):
             for profile, evolution in zip(fig.axes[::2], fig.axes[1::2]):
                 self.assertEqual((profile.elev, profile.azim), (22, -55))
                 self.assertEqual(profile.get_zlim(), (0, 1.08))
+                self.assertEqual(len(profile.get_yticks()), 0)
                 view = profile.get_position()
                 self.assertAlmostEqual(view.width * fig.get_figwidth() * 2.54, 3.6)
                 self.assertAlmostEqual(view.height * fig.get_figheight() * 2.54, 3.6)
