@@ -9,31 +9,31 @@
   "annotations_pt": 9,
   "depth_labels_pt": 7,
   "legends_pt": 7,
-  "page_width_cm": 9.8,
-  "page_height_cm": 11.000000000000002,
+  "page_width_cm": 10.4,
+  "page_height_cm": 10.4,
   "font_family": "Computer Modern Roman",
   "math_font_family": "Computer Modern Math Italic",
   "target_frame_side_cm": 2.5,
   "data_frames": [
     {
       "bounds_figure_fraction": [
-        0.6530612244897959,
-        0.6181818181818182,
-        0.9081632653061225,
-        0.8454545454545455
+        0.673076923076923,
+        0.625,
+        0.9134615384615383,
+        0.8653846153846153
       ],
-      "width_cm": 2.500000000000001,
-      "height_cm": 2.5000000000000004
+      "width_cm": 2.499999999999999,
+      "height_cm": 2.499999999999999
     },
     {
       "bounds_figure_fraction": [
-        0.6530612244897959,
-        0.15454545454545457,
-        0.9081632653061225,
-        0.38181818181818183
+        0.673076923076923,
+        0.16346153846153852,
+        0.9134615384615383,
+        0.4038461538461538
       ],
-      "width_cm": 2.500000000000001,
-      "height_cm": 2.5
+      "width_cm": 2.499999999999999,
+      "height_cm": 2.499999999999999
     }
   ],
   "three_dimensional_axes": [
@@ -47,10 +47,11 @@
         -55
       ],
       "box_aspect": [
-        2.1,
-        1.8,
-        1.6
+        1.4,
+        1.2,
+        1.8
       ],
+      "depth_tick_rotation_degrees": -45,
       "site_bar_width": 0.85,
       "layer_bar_width": 0.45,
       "probability_limits": [
@@ -69,6 +70,24 @@
         "0.58",
         "1.78",
         "0.56"
+      ],
+      "displayed_layer_labels": [
+        "$|\\lambda_{1}|$",
+        "$|\\lambda_{2}|$",
+        "$|\\lambda_{3}|$",
+        "$|\\lambda_{4}|$"
+      ],
+      "displayed_value_labels": [
+        "$|\\lambda_{1}|=1.73$",
+        "$|\\lambda_{2}|=0.58$",
+        "$|\\lambda_{3}|=1.78$",
+        "$|\\lambda_{4}|=0.56$"
+      ],
+      "layer_indices_front_to_back": [
+        1,
+        2,
+        3,
+        4
       ],
       "sites": [
         -12,
@@ -250,13 +269,13 @@
         ]
       ],
       "bounds_figure_fraction": [
-        0.1377551020408163,
-        0.5227272727272728,
-        0.607142857142857,
-        0.9409090909090908
+        0.15384615384615385,
+        0.5625,
+        0.5,
+        0.9086538461538461
       ],
-      "width_cm": 4.6,
-      "height_cm": 4.599999999999998
+      "width_cm": 3.5999999999999996,
+      "height_cm": 3.5999999999999996
     },
     {
       "kind": "layered_eigenstate_bars",
@@ -268,10 +287,11 @@
         -55
       ],
       "box_aspect": [
-        2.1,
-        1.8,
-        1.6
+        1.4,
+        1.2,
+        1.8
       ],
+      "depth_tick_rotation_degrees": -45,
       "site_bar_width": 0.85,
       "layer_bar_width": 0.45,
       "probability_limits": [
@@ -290,6 +310,24 @@
         "10.00",
         "0.1015",
         "0.1000"
+      ],
+      "displayed_layer_labels": [
+        "$|\\lambda_{1}|$",
+        "$|\\lambda_{2}|$",
+        "$|\\lambda_{3}|$",
+        "$|\\lambda_{4}|$"
+      ],
+      "displayed_value_labels": [
+        "$|\\lambda_{1}|=9.85$",
+        "$|\\lambda_{2}|=10.00$",
+        "$|\\lambda_{3}|=0.1015$",
+        "$|\\lambda_{4}|=0.1000$"
+      ],
+      "layer_indices_front_to_back": [
+        1,
+        2,
+        3,
+        4
       ],
       "sites": [
         -12,
@@ -471,58 +509,58 @@
         ]
       ],
       "bounds_figure_fraction": [
-        0.1377551020408163,
-        0.05909090909090917,
-        0.607142857142857,
-        0.4772727272727272
+        0.15384615384615385,
+        0.10096153846153846,
+        0.5,
+        0.4471153846153846
       ],
-      "width_cm": 4.6,
-      "height_cm": 4.599999999999998
+      "width_cm": 3.5999999999999996,
+      "height_cm": 3.5999999999999996
     }
   ],
   "colorbars": [
     {
       "bounds_figure_fraction": [
-        0.9196428571428572,
-        0.6181818181818182,
-        0.9311224489795917,
-        0.7545454545454545
+        0.9242788461538458,
+        0.625,
+        0.9350961538461535,
+        0.7692307692307692
       ],
       "parent_bounds_figure_fraction": [
-        0.6530612244897959,
-        0.6181818181818182,
-        0.9081632653061225,
-        0.8454545454545455
+        0.673076923076923,
+        0.625,
+        0.9134615384615383,
+        0.8653846153846153
       ],
       "height_fraction_of_frame": 0.5999999999999999,
-      "width_fraction_of_frame": 0.04499999999999933,
+      "width_fraction_of_frame": 0.04500000000000009,
       "bottom_offset_cm": 0.0,
       "label": "$P$",
       "label_position": "above",
       "shared": false,
-      "label_bottom_clearance_cm": 0.15016120105161257,
+      "label_bottom_clearance_cm": 0.15016120105161113,
       "scientific_exponent": 0
     },
     {
       "bounds_figure_fraction": [
-        0.9196428571428572,
-        0.15454545454545457,
-        0.9311224489795918,
-        0.2909090909090909
+        0.9242788461538458,
+        0.16346153846153852,
+        0.9350961538461535,
+        0.3076923076923077
       ],
       "parent_bounds_figure_fraction": [
-        0.6530612244897959,
-        0.15454545454545457,
-        0.9081632653061225,
-        0.38181818181818183
+        0.673076923076923,
+        0.16346153846153852,
+        0.9134615384615383,
+        0.4038461538461538
       ],
-      "height_fraction_of_frame": 0.5999999999999999,
-      "width_fraction_of_frame": 0.04499999999999977,
+      "height_fraction_of_frame": 0.6000000000000001,
+      "width_fraction_of_frame": 0.04500000000000009,
       "bottom_offset_cm": 0.0,
       "label": "$P$",
       "label_position": "above",
       "shared": false,
-      "label_bottom_clearance_cm": 0.15016120105161196,
+      "label_bottom_clearance_cm": 0.1501612010516123,
       "scientific_exponent": 0
     }
   ],

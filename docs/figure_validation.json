@@ -18,8 +18,15 @@
       "bar_probabilities_match_cached_inputs": true,
       "evolution_values_and_color_limits_unchanged": true,
       "pdf_text_and_math_inside_page": true,
-      "page_width_cm": 9.8,
-      "page_height_cm": 11.000000000000002
+      "page_width_cm": 10.4,
+      "page_height_cm": 10.4,
+      "layer_indices_front_to_back": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "profile_viewport_side_cm": 3.6
     },
     {
       "figure": "localization_partially_broken",
@@ -38,8 +45,15 @@
       "bar_probabilities_match_cached_inputs": true,
       "evolution_values_and_color_limits_unchanged": true,
       "pdf_text_and_math_inside_page": true,
-      "page_width_cm": 9.8,
-      "page_height_cm": 11.000000000000002
+      "page_width_cm": 10.4,
+      "page_height_cm": 10.4,
+      "layer_indices_front_to_back": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "profile_viewport_side_cm": 3.6
     },
     {
       "figure": "localization",
@@ -74,8 +88,15 @@
       "bar_probabilities_match_cached_inputs": true,
       "evolution_values_and_color_limits_unchanged": true,
       "pdf_text_and_math_inside_page": true,
-      "page_width_cm": 19.6,
-      "page_height_cm": 16.099999999999998
+      "page_width_cm": 20.8,
+      "page_height_cm": 15.200000000000001,
+      "layer_indices_front_to_back": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "profile_viewport_side_cm": 3.6
     },
     {
       "figure": "localization_unbroken",
@@ -94,8 +115,15 @@
       "bar_probabilities_match_cached_inputs": true,
       "evolution_values_and_color_limits_unchanged": true,
       "pdf_text_and_math_inside_page": true,
-      "page_width_cm": 9.8,
-      "page_height_cm": 11.000000000000002
+      "page_width_cm": 10.4,
+      "page_height_cm": 10.4,
+      "layer_indices_front_to_back": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "profile_viewport_side_cm": 3.6
     }
   ],
   "orthographic_view_degrees": [
@@ -125,5 +153,14 @@
     "validation/paper_anchors.py": "fb697f4ff51167ff83317acde63608166ddf7d16db1746263d6240965a0c4dac",
     "validation/report.json": "b8a601c1acfac545e8687c1e64b80120ff085b9b9b12b695ccc7274ec101861e"
   },
-  "unit_tests_passed": 8
+  "unit_tests_passed": 8,
+  "profile_viewport_side_cm": 3.6,
+  "coordinate_box_aspect": [
+    1.4,
+    1.2,
+    1.8
+  ],
+  "eigenvalue_legend_font_pt": 7,
+  "all_six_case_legends_clear_heatmap_frames": true,
+  "adjacent_row_titles_clear_site_labels": true
 }

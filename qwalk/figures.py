@@ -9,6 +9,7 @@ import tempfile
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
+from matplotlib.patches import Patch
 import numpy as np
 
 from .publication_style import (
@@ -24,7 +25,7 @@ PROFILE_COLORS = [C[key] for key in ("blue", "red", "green", "purple")]
 SITE_BAR_WIDTH = 0.85
 LAYER_BAR_WIDTH = 0.45
 CAMERA = (22, -55)
-BOX_ASPECT = (2.1, 1.8, 1.6)
+BOX_ASPECT = (1.4, 1.2, 1.8)
 
 
 def profile_labels(model, gamma, moduli):
@@ -66,12 +67,16 @@ def draw_profile(ax, model, gamma, data):
         )
     ax.set(xlim=(-12.8, 12.8), ylim=(-0.45, 3.5), zlim=(0, 1.08))
     ax.set_xticks([-10, 0, 10])
-    ax.set_yticks(range(4), labels=[rf"${value}$" for value in labels])
+    layer_labels = [rf"$|\lambda_{{{index+1}}}|$" for index in range(4)]
+    value_labels = [
+        rf"$|\lambda_{{{index+1}}}|={value}$" for index, value in enumerate(labels)
+    ]
+    ax.set_yticks(range(4), labels=layer_labels)
     ax.set_zticks([0, 0.5, 1])
     ax.set_xlabel(r"$n$", fontsize=10, labelpad=1)
-    ax.set_ylabel(r"$|\lambda|$", fontsize=9, labelpad=5)
+    ax.set_ylabel("")
     ax.set_zlabel(r"$P$", fontsize=10, labelpad=1)
-    ax.set_title(rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$", fontsize=9, y=0.90, pad=0)
+    ax.set_title(rf"$U_{{{model[-1]}}}$, $\gamma={gamma}$", fontsize=9, y=1.02, pad=0)
     ax.view_init(elev=CAMERA[0], azim=CAMERA[1])
     ax.zaxis.set_ticks_position("lower")
     ax.zaxis.set_label_position("lower")
@@ -85,6 +90,10 @@ def draw_profile(ax, model, gamma, data):
         axis.line.set_linewidth(1.0)
         axis.set_tick_params(labelsize=9, pad=1)
     ax.yaxis.set_tick_params(labelsize=7)
+    for label in ax.get_yticklabels():
+        label.set_rotation(-45)
+        label.set_ha("left")
+        label.set_va("top")
     payload = {
         "kind": "layered_eigenstate_bars",
         "model": model,
@@ -92,12 +101,16 @@ def draw_profile(ax, model, gamma, data):
         "projection": "orthographic",
         "view_elevation_azimuth_degrees": list(CAMERA),
         "box_aspect": list(BOX_ASPECT),
+        "depth_tick_rotation_degrees": -45,
         "site_bar_width": SITE_BAR_WIDTH,
         "layer_bar_width": LAYER_BAR_WIDTH,
         "probability_limits": [0, 1.08],
         "depth_coordinate": "categorical state rows, equally spaced for display",
         "eigenvalue_moduli": moduli.tolist(),
         "displayed_modulus_labels": labels,
+        "displayed_layer_labels": layer_labels,
+        "displayed_value_labels": value_labels,
+        "layer_indices_front_to_back": [1, 2, 3, 4],
         "sites": n.tolist(),
         "probabilities": values.tolist(),
     }
@@ -112,7 +125,7 @@ def build_case_figure(cases, font_path=None):
     apply_style(font_path=font_path)
     columns = 2 if len(cases) > 2 else 1
     rows = (len(cases) + columns - 1) // columns
-    case_width, case_height = 9.8, 5.1
+    case_width, case_height = 10.4, 4.8
     page_width, page_height = columns * case_width, rows * case_height + 0.80
     fig = plt.figure(figsize=(page_width / 2.54, page_height / 2.54))
     evolution = []
@@ -121,17 +134,32 @@ def build_case_figure(cases, font_path=None):
         x, y = column * case_width, 0.65 + (rows - row - 1) * case_height
         profile = fig.add_axes(
             [
-                (x + 1.35) / page_width,
-                y / page_height,
-                4.6 / page_width,
-                4.6 / page_height,
+                (x + 1.60) / page_width,
+                (y + 0.40) / page_height,
+                3.6 / page_width,
+                3.6 / page_height,
             ],
             projection="3d",
         )
-        draw_profile(profile, model, gamma, data)
+        payload = draw_profile(profile, model, gamma, data)
+        fig.legend(
+            [Patch(facecolor=color) for color in PROFILE_COLORS],
+            payload["displayed_value_labels"],
+            loc="upper left",
+            bbox_to_anchor=((x + 4.75) / page_width, (y + 4.15) / page_height),
+            bbox_transform=fig.transFigure,
+            frameon=False,
+            fontsize=7,
+            ncol=1,
+            handlelength=0.6,
+            handletextpad=0.3,
+            borderaxespad=0,
+            borderpad=0.1,
+            labelspacing=0.15,
+        )
         ax = fig.add_axes(
             [
-                (x + 6.4) / page_width,
+                (x + 7.0) / page_width,
                 (y + 1.05) / page_height,
                 2.5 / page_width,
                 2.5 / page_height,
@@ -199,6 +227,9 @@ def save_case_figure(fig, destination):
             ax.tick_params(which="major", length=3.0)
         if hasattr(ax, "_colorbar"):
             ax._colorbar.outline.set_linewidth(0.9)
+    for legend in fig.legends:
+        for text in [*legend.get_texts(), legend.get_title()]:
+            text.set_fontsize(7)
     pin_roman_face(fig)
     fig.canvas.draw()
     frames, projected, bars = [], [], []
