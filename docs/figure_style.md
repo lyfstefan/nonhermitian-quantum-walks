@@ -1,46 +1,46 @@
-# Figure style v1: compact square frames, LaTeX
+# Figure conventions
 
-Following the author's updated instructions, all ordinary letters, numbers,
-legends and mathematical expressions use real LaTeX (`text.usetex=True`).
-The exported PDF embeds Computer Modern Roman/Math Italic fonts (CMR/CMMI),
-matching the requested LaTeX appearance. This explicitly supersedes v0's
-`text.usetex=False` and LM Roman font-file pinning.
+Eigenstate probabilities are shown as compact three-dimensional layered bars.
+Each layer contains one right eigenstate, the horizontal coordinate is the
+physical site $n$, and the bar height is $P_n$. The depth coordinate is
+categorical: the four layers have equal display spacing and are labeled by
+their eigenvalue moduli. Depth spacing is not a numerical scale for
+$|\lambda|$.
 
-Role-based sizes and the original visual constants are preserved: axis labels
-10 pt; ticks, legends and annotations 9 pt; frames 1 pt; PNG exports 300 dpi.
-The canvas is fitted to the reference image's font/frame proportions: each
-data frame is approximately 2.5 cm square, with `Axes.set_box_aspect(1)`.
-This does not set equal x/y data units. Canvas dimensions follow the number
-and arrangement of panels, rather than a fixed overall paper width.
+All cases use the same orthographic projection, elevation $22^\circ$,
+azimuth $-55^\circ$, and probability-axis range $0\leq P\leq1.08$.
+Bars are centred on the original lattice sites; their width is 0.85 site
+units and their thickness is 0.45 of the layer spacing. Values and
+normalization are taken directly from the saved numerical arrays.
 
-Each heatmap has its own thin colorbar: 60% of its frame height and 4.5%
-of its frame width, with the bottoms aligned. A compact mathematical label
-is placed above the bar. Comparable panels retain the same numerical
-normalization even though their colorbars are separate. No long shared
-colorbars are used. PDF pages are not cropped; PNG and SVG are also exported.
+Each profile remains paired with the corresponding evolution heatmap.
+The evolution arrays, site/time extents and color normalization $0\leq P\leq1$
+are unchanged. Heatmap frames are 2.5 cm square. Each has its own thin
+colorbar, 60% of the frame height and 4.5% of the frame width, bottom-aligned
+with the frame and labeled above.
 
-Numerical arrays, fitted parameters and probability normalization are unchanged.
-Flux maps display the oriented phase modulo $2\pi$ on a cyclic scale. The quantum-walk overview is arranged as three
-rows and four columns; its detailed two-case plots retain eigenvalue legends.
+The overview has three rows and two case pairs per row. Each detailed figure
+has two case pairs, stacked vertically. LaTeX and Computer Modern are used
+throughout: axis labels 10 pt, ordinary ticks and model headings 9 pt, and
+depth-category values 7 pt. Axis lines are 1 pt. The two nearby small moduli
+in the $U_2$, $\gamma=0.1$ panel retain four decimal places so that they remain
+distinguishable; the other displayed values use two.
 
-## LaTeX dependencies
+PDF, SVG and 300 dpi PNG exports have identical geometry. The accompanying
+typography JSON separates projected three-dimensional axes from square
+heatmap frames and records the displayed profile values and evolution-data
+checksums. [Figure validation](figure_validation.json) records the export
+checks and unchanged scientific-input checksums.
 
-Install a TeX distribution with `latex`, `dvipng`, `type1cm`, `type1ec` and
-AMS and textcomp packages. On Ubuntu, the CI uses:
+## Dependencies
+
+Use Matplotlib 3.10 or later and a LaTeX installation with `latex`, `dvipng`,
+`type1cm`, `type1ec`, `amsmath` and `textcomp`. On Ubuntu:
 
 ```sh
 sudo apt-get install texlive-latex-extra cm-super dvipng ghostscript
 ```
 
-The legacy `--font-path` option remains accepted for compatibility but does
-not override TeX's Computer Modern selection.
-
-The TeX preamble is `\usepackage{amsmath}\usepackage{textcomp}`.
-Operator names use math subscripts (`$U_1$`, `$U_2$`), dimensionless ratios
-use math mode (`$V/t$`), and phase letters use mathematical italics.
-
-Quantum-walk overview legends use 8 pt text. Detailed-case eigenvalue keys
-use 7 pt text in two columns inside the top of each profile frame. The common
-modulus is supplied once as the legend title; values show two decimal places.
-Only the displayed y-axis headroom is increased to avoid covering the peaks;
-profile values, eigenvalues, and their saved precision are unchanged.
+The preamble is `\usepackage{amsmath}\usepackage{textcomp}`. The legacy
+`--font-path` argument remains accepted; TeX supplies the Computer Modern
+fonts.

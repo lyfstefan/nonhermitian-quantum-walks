@@ -1,0 +1,129 @@
+{
+  "distinct_parameter_sets": 6,
+  "figures": [
+    {
+      "figure": "localization_completely_broken",
+      "cases": [
+        {
+          "model": "U1",
+          "gamma": 0.3
+        },
+        {
+          "model": "U2",
+          "gamma": 0.1
+        }
+      ],
+      "projected_profile_axes": 2,
+      "square_heatmap_frames": 2,
+      "bar_probabilities_match_cached_inputs": true,
+      "evolution_values_and_color_limits_unchanged": true,
+      "pdf_text_and_math_inside_page": true,
+      "page_width_cm": 9.8,
+      "page_height_cm": 11.000000000000002
+    },
+    {
+      "figure": "localization_partially_broken",
+      "cases": [
+        {
+          "model": "U1",
+          "gamma": 0.2
+        },
+        {
+          "model": "U2",
+          "gamma": 0.7
+        }
+      ],
+      "projected_profile_axes": 2,
+      "square_heatmap_frames": 2,
+      "bar_probabilities_match_cached_inputs": true,
+      "evolution_values_and_color_limits_unchanged": true,
+      "pdf_text_and_math_inside_page": true,
+      "page_width_cm": 9.8,
+      "page_height_cm": 11.000000000000002
+    },
+    {
+      "figure": "localization",
+      "cases": [
+        {
+          "model": "U1",
+          "gamma": 0.01
+        },
+        {
+          "model": "U2",
+          "gamma": 0.95
+        },
+        {
+          "model": "U1",
+          "gamma": 0.2
+        },
+        {
+          "model": "U2",
+          "gamma": 0.7
+        },
+        {
+          "model": "U1",
+          "gamma": 0.3
+        },
+        {
+          "model": "U2",
+          "gamma": 0.1
+        }
+      ],
+      "projected_profile_axes": 6,
+      "square_heatmap_frames": 6,
+      "bar_probabilities_match_cached_inputs": true,
+      "evolution_values_and_color_limits_unchanged": true,
+      "pdf_text_and_math_inside_page": true,
+      "page_width_cm": 19.6,
+      "page_height_cm": 16.099999999999998
+    },
+    {
+      "figure": "localization_unbroken",
+      "cases": [
+        {
+          "model": "U1",
+          "gamma": 0.01
+        },
+        {
+          "model": "U2",
+          "gamma": 0.95
+        }
+      ],
+      "projected_profile_axes": 2,
+      "square_heatmap_frames": 2,
+      "bar_probabilities_match_cached_inputs": true,
+      "evolution_values_and_color_limits_unchanged": true,
+      "pdf_text_and_math_inside_page": true,
+      "page_width_cm": 9.8,
+      "page_height_cm": 11.000000000000002
+    }
+  ],
+  "orthographic_view_degrees": [
+    22,
+    -55
+  ],
+  "site_bar_width": 0.85,
+  "layer_bar_width": 0.45,
+  "profile_probability_limits": [
+    0,
+    1.08
+  ],
+  "heatmap_probability_color_limits": [
+    0,
+    1
+  ],
+  "heatmap_frame_side_cm": 2.5,
+  "source_data_and_physics_files_unchanged": true,
+  "scientific_input_sha256": {
+    "examples/output/U2_gamma_0.1.npz": "e6c24173acd8f8f36b63b4108597b9f3d29fe7bef8b42227c3f269720e936128",
+    "examples/output/U1_gamma_0.3.npz": "4b1d8db4e415f7660f8e29a60de6218883becd44a2021d8570fb1f1085b9d577",
+    "examples/output/U1_gamma_0.2.npz": "66e7a3246ca379dd57ec9918609284626a1756f72de03f55179b2a9abdb6aaf2",
+    "examples/output/U2_gamma_0.7.npz": "7fede534b7c7047479414dfa232769d5a3e38fe7c20083774e5d4e3534913dec",
+    "examples/output/U2_gamma_0.95.npz": "bc3efd56dc745a3c4b8bd43eed1a176a1938d9763969008784b9309545d06281",
+    "examples/output/U1_gamma_0.01.npz": "34a6d9f88b72c6f149764aa7d43e8481e3c63fdf64c860b7970309d284473906",
+    "qwalk/model.py": "309130f5f7afc47896be1244dd52db33e339b8af2b8b0ad331ab0c50dde59f2a",
+    "validation/paper_anchors.py": "fb697f4ff51167ff83317acde63608166ddf7d16db1746263d6240965a0c4dac",
+    "validation/report.json": "b8a601c1acfac545e8687c1e64b80120ff085b9b9b12b695ccc7274ec101861e"
+  },
+  "unit_tests_passed": 8
+}

@@ -40,7 +40,7 @@ $P_n=|\psi_{n,\uparrow}|^2+|\psi_{n,\downarrow}|^2$.
 ## Installation and examples
 
 Run from the repository root with Python 3.11 and the dependencies listed in
-`requirements.txt`:
+`requirements.txt` (including Matplotlib 3.10 or later):
 
 ```sh
 python -m pip install -r requirements.txt
@@ -75,7 +75,11 @@ The regime labels describe the defect-free bulk spectrum.
 | Partially broken | 0.20 | 0.70 | [Localized modes and evolution](docs/localization_partially_broken.png) |
 | Completely broken | 0.30 | 0.10 | [Localized modes and evolution](docs/localization_completely_broken.png) |
 
-The [overview](docs/localization.png) collects all six cases. PDFs, SVGs and
+The [overview](docs/localization.png) collects all six cases. Eigenstate
+profiles use three-dimensional layered bars with a common orthographic view,
+bar width and probability-axis range. Each layer is one eigenstate, labeled
+by its eigenvalue modulus; the layer spacing is categorical. Evolution maps
+retain their probability normalization and their common color scale. PDFs, SVGs and
 300 dpi PNGs are provided in `docs/`. The figures use the shared
 [publication style](docs/figure_style.md).
 
